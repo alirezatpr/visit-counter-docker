@@ -207,9 +207,8 @@ See `.env.example` for template.
 - Alpine images reduce container size
 - Volume ensures data persists across container lifecycles
 
----
+## Author
 
-**Developed as part of Software Engineering course project**
-
-# visit-counter-docker
-4-service web app (Nginx, Flask, PostgreSQL, Redis) containerized with Docker Compose
+**Alireza Taghipour**
+Computer Engineering student — interested in DevOps, Networking & Security
+📧 alireza.taghiipour@gmail.com
