@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  # Frontend Service
+  frontend:
+    build: ./frontend
+    container_name: visit-counter-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - visit-network
+
+  # Backend Service
+  backend:
+    build: ./backend
+    container_name: visit-counter-backend
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    depends_on:
+      - database
+      - redis
+    networks:
+      - visit-network
+
+  # PostgreSQL Database
+  database:
+    image: postgres:15-alpine
+    container_name: visit-counter-database
+    env_file:
+      - .env
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - visit-network
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: visit-counter-redis
+    networks:
+      - visit-network
+
+networks:
+  visit-network:
+    driver: bridge
+
+volumes:
+  db-data:
